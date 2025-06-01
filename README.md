@@ -22,12 +22,14 @@ cd health-project
 
 ## Структура проєкту
 
+```
 health-project/
 ├── client/         # Папка для frontend (HTML, CSS, JS)
 ├── server/         # Папка для backend (Node.js + Express)
 ├── .gitignore
 ├── .env            # Шаблон конфігурації середовища
 └── README.md       # Інструкція з налаштування
+```
 
 ---
 
