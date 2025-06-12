@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Plus — Вхід</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="Icons/Logo.svg" alt="Health Plus" />
+      </div>
+      <nav class="nav-links">
+        <a href="#">Головна</a>
+        <a href="#">Про нас</a>
+        <a href="#">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+<main>
+  <div class="container">
+    <div class="login-box">
+      <h2>Вхід</h2>
+
+      <form id="loginForm">
+
+        <label for="email">Адреса email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Пароль</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" name="password" required />
+
+          <span id="togglePassword" class="eye-icon">
+
+            <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#444" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+
+            <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#444" stroke-width="2" viewBox="0 0 24 24" style="display: none;">
+              <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.52 21.52 0 0 1 5.17-5.72M9.88 9.88a3 3 0 1 0 4.24 4.24M1 1l22 22"/>
+            </svg>
+          </span>
+
+          <p id="loginError" class="error-message"></p>
+        </div>
+
+        <button type="submit">Увійти</button>
+      </form>
+
+      <p class="register-link">
+        Ще не зареєстровані? <a href="register.html">Зареєструватися</a>
+      </p>
+    </div>
+  </div>
+</main>
+
+
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+  const errorMessage = document.getElementById("loginError");
+
+  togglePassword.addEventListener("click", () => {
+    const eyeOpen = document.getElementById("eyeOpen");
+    const eyeClosed = document.getElementById("eyeClosed");
+    const isHidden = passwordInput.type === "password";
+
+    passwordInput.type = isHidden ? "text" : "password";
+    eyeOpen.style.display = isHidden ? "none" : "inline";
+    eyeClosed.style.display = isHidden ? "inline" : "none";
+  });
+
+  passwordInput.addEventListener("input", () => {
+    errorMessage.style.display = "none";
+  });
+
+  const loginForm = document.getElementById("loginForm");
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = loginForm.email.value;
+    const password = loginForm.password.value;
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.nickname);
+        localStorage.setItem("userEmail", data.email);
+        localStorage.setItem("userGender", data.gender); 
+
+        window.location.href = "dashboard.html";
+      } else {
+        errorMessage.textContent = data.message || "Помилка входу";
+        errorMessage.style.display = "block";
+      }
+    } catch (err) {
+      errorMessage.textContent = "Помилка з’єднання з сервером";
+      errorMessage.style.display = "block";
+    }
+  });
+</script>
+</body>
+</html>

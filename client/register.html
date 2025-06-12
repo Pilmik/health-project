@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Plus — Реєстрація</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="Icons/Logo.svg" alt="Health Plus Logo" />
+      </div>
+      <div class="nav-links">
+        <a href="#">Головна</a>
+        <a href="#">Про нас</a>
+        <a href="#">Контакти</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="form-box">
+        <div id="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+
+        <form id="registerForm">
+
+          <div class="step active" id="nickname-step">
+            <h2>Як вас звати?</h2>
+            <p>Ми раді, що ви тут!</p>
+            <div>
+              <input type="text" id="nickname" placeholder="Ваше ім’я" required />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="birthdate-step">
+            <h2>Коли ви народилися?</h2>
+            <p>Ми використаємо це для розрахунку віку.</p>
+            <div>
+              <input type="date" id="birthdate" required />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="weight-step">
+            <h2>Яка ваша вага?</h2>
+            <p>Укажіть у кілограмах.</p>
+            <div>
+              <input type="number" id="weight" placeholder="Наприклад: 68" required />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="height-step">
+            <h2>Який у вас зріст?</h2>
+            <p>Укажіть у сантиметрах.</p>
+            <div>
+              <input type="number" id="height" placeholder="Наприклад: 172" required />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="gender-step">
+            <h2>Ваша стать</h2>
+            <p>Це допоможе точніше розраховувати калорії та мету.</p>
+            <div>
+              <select id="gender" required>
+                <option value="" disabled selected>Оберіть стать</option>
+                <option value="ч">Чоловіча</option>
+                <option value="ж">Жіноча</option>
+              </select>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="meals-step">
+            <h2>Скільки разів на день ви їсте?</h2>
+            <div>
+              <input type="number" id="mealsPerDay" min="1" max="10" required />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="lifestyle-step">
+            <h2>Який у вас спосіб життя?</h2>
+            <div>
+              <select id="lifestyle" required>
+                <option value="" disabled selected>Оберіть варіант</option>
+                <option value="сидячий">Сидячий</option>
+                <option value="помірно активний">Помірно активний</option>
+                <option value="активний">Активний</option>
+              </select>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="goal-step">
+            <h2>Яка ваша мета?</h2>
+            <div>
+              <select id="goal" required>
+                <option value="" disabled selected>Оберіть мету</option>
+                <option value="схуднення">Схуднути</option>
+                <option value="набір ваги">Набрати вагу</option>
+              </select>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="target-weight-step">
+            <h2>Скільки кілограмів ви хочете <span id="weightActionWord">змінити</span>?</h2>
+            <p id="targetWeightInfo" class="info-message">
+              Зміна ваги буде оцінена відповідно до вашого поточного стану. Якщо значення виходить за межі норми — продовжити буде неможливо.
+            </p>
+            <div>
+              <input type="number" id="targetWeightChange" placeholder="Наприклад: 5" />
+              <div class="error-message"></div>
+              <div id="bmiWarning" class="bmi-warning" style="margin-top: 10px;"></div>
+            </div>
+          </div>
+
+          <div class="step" id="calories-step">
+            <h2 id="caloriesTitle">Скільки калорій хочете спалювати на день?</h2>
+            <p id="caloriesDesc">Це допоможе нам сформувати індивідуальний план.</p>
+            <div>
+              <input type="number" id="caloriesPerDay" placeholder="Наприклад: 500" />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="step" id="auth-step">
+            <h2>Зареєструйте обліковий запис</h2>
+
+            <div>
+              <input type="email" id="email" placeholder="Email" required />
+              <div class="error-message"></div>
+            </div>
+            <div class="password-guidelines">
+              Пароль має складатись щонайменше з 8 символів і включати великі та малі літери, цифри й спеціальні символи.
+            </div>
+            <div>
+              <input type="password" id="password" placeholder="Пароль" required />
+              <div id="password-strength" class="strength-bar"></div>
+              <div class="error-message"></div>
+            </div>
+            <div>
+              <input type="password" id="confirmPassword" placeholder="Підтвердіть пароль" required />
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="navigation">
+            <button type="button" id="prevBtn">Назад</button>
+            <button type="button" id="nextBtn">Далі</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="register.js"></script>
+</body>
+</html>

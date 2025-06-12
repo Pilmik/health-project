@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Plus</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .loader-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      user-select: none;
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #4caf50;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .message {
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 8px;
+      transition: all 0.5s ease;
+    }
+
+    .checkmark {
+      display: none;
+      font-size: 56px;
+      color: #4caf50;
+      margin-top: 24px;
+      animation: pop-in 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .checkmark.visible {
+      display: block;
+    }
+
+    @keyframes pop-in {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+</style>
+</head>
+<body>
+  <div class="loader-container">
+    <div class="loader"></div>
+    <div class="message">Формуємо ваш план...</div>
+    <div class="checkmark" id="checkmark">✔</div>
+  </div>
+
+<script>
+    setTimeout(() => {
+      document.querySelector(".loader").style.display = "none";
+      
+      const message = document.querySelector(".message");
+      message.textContent = "План успішно створено!";
+      message.style.fontSize = "22px";
+      message.style.fontWeight = "600";
+
+      const checkmark = document.getElementById("checkmark");
+      checkmark.classList.add("visible");
+
+      setTimeout(() => {
+        window.location.href = "plan.html";
+      }, 2000);
+    }, 10000);
+</script>
+</body>
+</html>
