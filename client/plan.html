@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ваш персональний план — Health+</title>
+  <link rel="stylesheet" href="plan.css">
+</head>
+<body>
+  <div class="plan-container">
+
+    <h1 class="plan-title">Ваш персональний план</h1>
+    <p class="plan-subtitle">Все про ваш шлях до здоровʼя — на цій сторінці</p>
+
+    <div class="macro-wrapper-horizontal">
+      <div class="side-card">
+        <div class="plan-box-header">
+          <img src="Icons/water.svg" alt="Вода" class="plan-icon" />
+          <h2>Вода</h2>
+        </div>
+        <p>Мета: <span id="waterLiters">2.0</span> л/день</p>
+      </div>
+
+      <div class="macro-chart">
+        <canvas id="macroDonutChart" width="440" height="440"></canvas>
+        <div class="macro-center">
+          <span id="totalCalories">1853</span>
+          <p>ккал / день</p>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <div class="plan-box-header">
+          <img src="Icons/steps.svg" alt="Кроки" class="plan-icon" />
+          <h2>Кроки</h2>
+        </div>
+        <p>Мета: <span id="stepsTarget">10000</span> кроків/день</p>
+      </div>
+    </div>
+
+    <div class="macro-legend">
+      <div><span class="dot carbs"></span> Вуглеводи (<span id="carbsPercent">45%</span>) <span id="carbsGrams">208</span></div>
+      <div><span class="dot protein"></span> Білки (<span id="proteinPercent">30%</span>) <span id="proteinGrams">139</span></div>
+      <div><span class="dot fats"></span> Жири (<span id="fatsPercent">25%</span>) <span id="fatsGrams">51</span></div>
+    </div>
+
+    <div class="goal-summary">
+        <img src="Icons/goal.svg" alt="Ціль" class="goal-icon" />
+        <div class="goal-details">
+          <p>Ваша мета: <span>Схуднути на 25 кг</span></p>
+          <p>Очікувана дата досягнення: <span>20 червня 2025 р.</span></p>
+        </div>
+      </div>           
+
+    <div class="button-wrapper">
+      <button class="btn-dashboard" onclick="window.location.href='dashboard.html'">Перейти до дашборду</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="plan.js"></script>
+</body>
+</html>
