@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Plus</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
+</head>
+<body>
+
+  <div class="dashboard-container">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-logo">
+          <img src="Icons/Logo.svg" alt="Health Plus" class="logo-img" />
+        </div>        
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="active"><i class="fi fi-rr-home"></i> <span>Головна</span></a>
+          <a href="plan.html"><i class="fi fi-rr-calendar"></i> <span>Мій план</span></a>
+          <a href="#" id="statisticsLink"><i class="fi fi-rr-chart-histogram"></i> <span>Статистика</span></a>
+          <a href="recommendations.html"><i class="fi fi-rr-heart"></i> <span>Рекомендації</span></a>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <nav class="sidebar-nav">
+          <a href="settings.html"><i class="fi fi-rr-settings"></i> <span>Налаштування</span></a>
+          <a href="login.html"><i class="fi fi-rr-sign-out-alt"></i> <span>Вийти</span></a>
+        </nav>
+      </div>
+    </aside>
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <i class="fi fi-rr-angle-left" id="toggleIcon"></i>
+    </button>
+
+<main class="main-content" id="mainContent">
+  <div class="content-wrapper">
+
+<div id="statisticsView" style="display: none; padding: 40px 30px;">
+  <div class="statistics-header">
+    <h2>Аналітика ваших щоденних показників за останні дні</h2>
+  </div>
+  <div class="statistics-flex">
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Споживання води</h3>
+        <div class="stat-mode-switch" data-chart="water">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="waterChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Кількість кроків</h3>
+        <div class="stat-mode-switch" data-chart="steps">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="stepsChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Зміна ваги</h3>
+        <div class="stat-mode-switch" data-chart="weight">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="weightChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Спожиті калорії</h3>
+        <div class="stat-mode-switch" data-chart="calories">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="caloriesChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Якість раціону</h3>
+        <div class="stat-mode-switch" data-chart="nutritionQuality">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="nutritionQualityChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Енергетичний баланс</h3>
+        <div class="stat-mode-switch" data-chart="energyBalance">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="energyBalanceChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Співвідношення БЖВ</h3>
+        <div class="stat-mode-switch" data-chart="macros">
+          <button class="mode-btn active" data-mode="week">Тиждень</button>
+          <button class="mode-btn" data-mode="month">Місяць</button>
+        </div>
+      </div>
+      <canvas id="macrosChart" height="200"></canvas>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-header">
+        <h3>Часто вживані продукти</h3>
+      </div>
+      <canvas id="topProductsChart" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <h1>Привіт, <span id="greeting-name">Користувачу</span>!</h1>
+    <div class="summary-header">
+      <h2 class="summary-heading">Ваш загальний підсумок</h2>
+      <div class="today-heading" id="dateSwitcherBtn">
+        <h2 id="currentDateText">Сьогодні <i class="fi fi-rr-angle-small-down"></i></h2>
+      </div>              
+    </div>
+  </div>
+  <div class="user-profile">
+    <span id="profile-email" class="user-email">email@example.com</span>
+    <img id="avatar-icon" src="" class="icon-svg" />
+  </div>
+</header>
+
+<div class="top-row equal-height">
+  <div class="macro-summary-block">
+    <div class="macro-summary-header">
+      <div class="macro-box">
+        <h4>Спожито</h4>
+        <p>0</p>
+      </div>
+      <div class="macro-ring">
+        <canvas id="macroRingChart"></canvas>
+        <div class="macro-center-text">
+          <div>50</div>
+          <small>Залишилось</small>
+        </div>
+      </div>
+      <div class="macro-box">
+        <h4>Спалено</h4>
+        <p>0</p>
+      </div>
+    </div>
+
+    <div class="macro-bars horizontal-macro-bars">
+ 
+      <div class="macro-bar-item">
+        <div class="macro-bar-label">Вуглеводи</div>
+        <div class="macro-bar">
+          <div style="width: 60%; background-color: #03A9F4;"></div>
+        </div>
+        <div class="macro-bar-value">230 / 384 г</div>
+      </div>
+
+      <div class="macro-bar-item">
+        <div class="macro-bar-label">Білки</div>
+        <div class="macro-bar">
+          <div style="width: 45%; background-color: #7E57C2;"></div>
+        </div>
+        <div class="macro-bar-value">70 / 154 г</div>
+      </div>
+
+      <div class="macro-bar-item">
+        <div class="macro-bar-label">Жири</div>
+        <div class="macro-bar">
+          <div style="width: 25%; background-color: #FFA726;"></div>
+        </div>
+        <div class="macro-bar-value">25 / 102 г</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="goal-box">
+    <div class="progress-header">
+      <div class="progress-header-left">
+        <img src="Icons/goal.svg" alt="Завдання" class="icon-svg" />
+        <h3>Моя мета</h3>
+      </div>
+    </div>
+    <div class="goal-content-side">
+      <div class="goal-text">
+        <div class="goal-main" id="goalMainText">Схуднути на 25 кг</div>
+        <div class="goal-sub" id="goalSubText">
+          Очікувана дата:<br />
+          <strong>20 червня 2025 р.</strong>
+        </div>
+      </div>
+      <div class="goal-ring">
+        <canvas id="goalRingChart"></canvas>
+        <div class="goal-center-text">30%</div>
+      </div>
+    </div>
+  </div>
+</div>        
+        
+<div class="section-user-progress">
+<div class="progress-block modernized">
+  <div class="progress-header">
+    <div class="progress-header-left">
+      <img src="Icons/water.svg" alt="Вода" class="icon-svg" />
+      <h3>Випито води</h3>
+    </div>
+  </div>
+  <div class="weight-value-wrapper">
+    <button class="weight-change-btn small" id="waterMinusBtn">−</button>
+    <div class="weight-value" id="waterValue">1.5</div>
+    <button class="weight-change-btn small" id="waterPlusBtn">+</button>
+  </div>
+  <div class="value-sub-goal">Мета: 2.0 л</div>  
+  <div class="progress-bar">
+    <div id="waterProgress" style="width: 75%"></div>
+  </div>
+</div>
+
+  <div class="progress-block steps-block">
+    <div class="progress-header">
+      <div class="progress-header-left">
+        <img src="Icons/steps.svg" alt="Кроки" class="icon-svg" />
+        <h3>Пройдено кроків</h3>
+      </div>
+    </div>
+  
+    <div class="weight-value-wrapper">
+      <button class="weight-change-btn small" id="stepsMinusBtn">−</button>
+      <input id="stepsInput" class="weight-value" type="number" min="0" max="50000" />
+      <button class="weight-change-btn small" id="stepsPlusBtn">+</button>
+    </div>
+    <div class="value-sub-goal">Мета: 10000 кроків</div>
+    <div class="progress-bar">
+      <div id="stepsProgress" style="width: 60%"></div>
+    </div>
+  </div>
+
+<div class="progress-block weight-block">
+  <div class="progress-header">
+    <div class="progress-header-left">
+      <img src="Icons/weight.svg" alt="Поточна вага" class="icon-svg" />
+      <h3>Поточна вага</h3>
+    </div>
+  </div>
+  <div class="weight-value-wrapper">
+    <button class="weight-change-btn small" id="weightMinusBtn">−</button>
+    <input id="weightInput" class="weight-value" type="number" min="0" step="0.1" />
+    <button class="weight-change-btn small" id="weightPlusBtn">+</button>
+  </div>
+  <div class="weight-range-labels">
+    <span></span>
+    <span></span>
+  </div>     
+  <div class="progress-bar">
+    <div id="weightProgress" style="width: 20%"></div>
+  </div>
+</div>
+
+<div class="progress-block task-box">
+  <div class="progress-header">
+    <div class="progress-header-left">
+      <img src="Icons/fire.svg" alt="Якість раціону" class="icon-svg" />
+      <h3>Якість раціону</h3>
+    </div>
+  </div>
+  <div class="nutrition-feedback" id="nutritionFeedback">
+    Ваш раціон сьогодні збалансований. Продовжуйте в тому ж дусі!
+  </div>
+  <div class="quality-labels">
+    <span>Погано</span>
+    <span>Добре</span>
+  </div>
+  <div class="progress-bar" style="background: linear-gradient(to right, #f44336, #ffeb3b, #4caf50); position: relative;">
+    <div class="quality-indicator" id="qualityIndicator"></div>
+  </div>  
+</div>
+
+</div>
+<div class="section-meals">
+
+  <div class="meal-block">
+    <img src="Icons/egg.svg" alt="Сніданок" class="meal-icon" />
+    <div class="meal-info">
+      <div class="meal-title">Сніданок</div>
+      <div class="meal-kcal">0 / 500 ккал</div>
+    </div>
+    <button class="meal-add">+</button>
+  </div>
+
+  <div class="meal-block">
+    <img src="Icons/burito.svg" alt="Обід" class="meal-icon" />
+    <div class="meal-info">
+      <div class="meal-title">Обід</div>
+      <div class="meal-kcal">0 / 700 ккал</div>
+    </div>
+    <button class="meal-add">+</button>
+  </div>
+
+  <div class="meal-block">
+    <img src="Icons/salad.svg" alt="Вечеря" class="meal-icon" />
+    <div class="meal-info">
+      <div class="meal-title">Вечеря</div>
+      <div class="meal-kcal">0 / 600 ккал</div>
+    </div>
+    <button class="meal-add">+</button>
+  </div>
+
+  <div class="meal-block">
+    <img src="Icons/applle.svg" alt="Перекуси" class="meal-icon" />
+    <div class="meal-info">
+      <div class="meal-title">Перекуси</div>
+      <div class="meal-kcal">0 / 300 ккал</div>
+    </div>
+    <button class="meal-add">+</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="foodModalOverlay"></div>
+
+<div class="modal" id="foodModal">
+  <div class="modal-header">
+    <h3>Сніданок</h3>
+    <input type="text" placeholder="Що ви сьогодні їли?" class="modal-search" />
+    <button class="modal-close" id="foodModalClose">&times;</button>
+  </div>
+  <ul class="modal-list scrollable" id="foodSearchResults">
+  </ul>
+  <hr class="modal-divider" />
+  <ul class="added-food-list" id="addedFoodList"></ul>
+  <div class="modal-footer">
+    <button class="modal-done-btn">Готово</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="dateModalOverlay"></div>
+<div class="modal calendar-modal" id="dateModal">
+  <div class="modal-header">
+    <h3>Оберіть дату</h3>
+    <button class="modal-close" id="dateModalClose">&times;</button>
+  </div>
+  
+  <input type="date" id="dateInput" class="calendar-input" />
+
+  <div class="modal-footer date-modal-footer">
+    <button class="modal-today-btn" id="dateTodayBtn">Сьогодні</button>
+    <button class="modal-done-btn" id="dateModalDone">Готово</button>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
