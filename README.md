@@ -26,7 +26,7 @@ cd health-project
 health-project/
 ├── client/         # Папка для frontend (HTML, CSS, JS)
 ├── server/         # Папка для backend (Node.js + Express)
-├── .gitignore
+├── app.js
 ├── .env            # Файл конфігурації середовища
 └── README.md       # Цей файл
 ```
@@ -36,7 +36,6 @@ health-project/
 ## Встановлення залежностей
 
 ```bash
-cd server
 npm install
 ```
 
@@ -57,7 +56,7 @@ PORT=5000
 MONGO_URL=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 ```
-
+> JWT_SECRET - будь-який, наприклад: qwerty1234
 ---
 
 ## Налаштування MongoDB
