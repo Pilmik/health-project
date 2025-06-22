@@ -59,6 +59,14 @@ JWT_SECRET=your_jwt_secret_key
 > JWT_SECRET - будь-який, наприклад: qwerty1234
 ---
 
+## Запуск сервера
+
+Для запуску app.js виконайте в терміналі:
+
+```bash
+npm start
+```
+---
 ## Налаштування MongoDB
 
 1. Перейдіть на [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
