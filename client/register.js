@@ -10,6 +10,7 @@ const caloriesDesc = document.getElementById("caloriesDesc");
 
 let currentStep = 0;
 let passwordStrengthScore = 0;
+let gender;
 const TOTAL_STEPS = steps.length;
 
 function isWeightChangeGoal() {
@@ -142,8 +143,8 @@ nextBtn.addEventListener("click", async () => {
       let age = now.getUTCFullYear() - birthDate.getUTCFullYear();
       const m = now.getUTCMonth() - birthDate.getUTCMonth();
       if (m < 0 || (m === 0 && now.getUTCDate() < birthDate.getUTCDate())) age--;
-      if (age < 13 || age > 85) {
-        showError(stepIndex, "Реєстрація доступна лише для користувачів віком 13–85 років.");
+      if (age < 13 || age > 110) {
+        showError(stepIndex, "Реєстрація доступна лише для користувачів віком 13–110 років.");
         return;
       }
     } catch {
@@ -169,7 +170,7 @@ nextBtn.addEventListener("click", async () => {
   }
 
   if (currentEl.querySelector("#gender")) {
-    const gender = document.getElementById("gender").value;
+    gender = document.getElementById("gender").value;
     if (!gender) {
       showError(stepIndex, "Оберіть стать.");
       return;
@@ -191,8 +192,12 @@ nextBtn.addEventListener("click", async () => {
     const goal = goalSelect.value;
     const minBMI = 18.5;
     const maxBMI = 24.9;
-    const minWeight = Math.floor(minBMI * ((height / 100) ** 2));
-    const maxWeight = Math.floor(maxBMI * ((height / 100) ** 2));
+    let minWeight = Math.floor(minBMI * ((height / 100) ** 2));
+    let maxWeight = Math.floor(maxBMI * ((height / 100) ** 2));
+    if (gender === "ж") {
+      minWeight -= 3;
+      maxWeight -= 3;
+    }
     const projectedWeight = goal === "схуднення" ? weight - target : weight + target;
     const step = steps[stepIndex];
     const existingConsent = step.querySelector(".consent-wrapper");
