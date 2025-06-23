@@ -17,6 +17,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const path = require("path");
+app.use(express.static(path.join(__dirname, "client")));
+app.use("/Icons", express.static(path.join(__dirname, "client/Icons")));
+app.use("/images", express.static(path.join(__dirname, "images")));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/plan", planRoutes);
 app.use("/api/dashboard", dashboardRoutes);

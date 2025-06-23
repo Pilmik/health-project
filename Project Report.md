@@ -65,7 +65,6 @@
 
 ### app.js (Backend)
 ```javascript
-// Імпорт необхідних модулів
 const cors = require("cors");
 const dotenv = require("dotenv");
 const express = require("express");
@@ -147,7 +146,6 @@ if (currentEl.querySelector("#weight")) {
 
 ### Фрагмент client/dashboard.html (Frontend)
 ```html
-</div>
 <div class="section-meals">
 
   <div class="meal-block">

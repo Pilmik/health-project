@@ -1,0 +1,312 @@
+:root {
+  --primary-color: #4caf50;
+  --primary-dark: #388e3c;
+  --text-color: #1d1d1d;
+  --light-bg: #f6fef8;
+  --white: #ffffff;
+  --gray: #e9ecef;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  --border-radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 🔹 Навігація */
+.navbar {
+  background-color: var(--primary-color);
+  padding: 18px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 36px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 28px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #dcedc8;
+}
+
+/* 🔹 Hero */
+.hero {
+  background: linear-gradient(135deg, #d0f0dc, #f0fdf4);
+  padding: 140px 20px 100px;
+  text-align: center;
+}
+
+.hero-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 36px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons a {
+  display: inline-block;
+  margin: 0 12px;
+  padding: 14px 34px;
+  font-size: 17px;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: background 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  will-change: transform;
+}
+
+.hero-buttons .start {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.hero-buttons .login {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: transparent;
+}
+
+.hero-buttons .start:hover,
+.hero-buttons .login:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: scale(1.05);
+}
+
+/* 🔹 Про застосунок */
+.project-desc {
+  background-color: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.project-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.project-desc h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 24px;
+}
+
+.project-desc p {
+  font-size: 17px;
+  color: #333;
+}
+
+/* 🔹 Можливості */
+.features {
+  background-color: #eafaf1;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.features-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.features h2 {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 48px;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 28px;
+  overflow: hidden;
+}
+
+.feature-card {
+  flex: 1;
+  max-width: 300px;
+  padding: 36px 24px;
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.feature-card img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* 🔹 Інтерфейс */
+.preview {
+  background: #ffffff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.preview h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.preview p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.preview-image {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Призов до дії */
+.cta-final {
+  padding: 80px 20px;
+  background: #eafaf1;
+  color: var(--primary-dark);
+  text-align: center;
+}
+
+.cta-final h2 {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.cta-final p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-final .start.large {
+  padding: 16px 40px;
+  font-size: 18px;
+  background: var(--primary-color);
+  color: white;
+  font-weight: 700;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.cta-final .start.large:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+/* 🔹 Футер */
+footer {
+  background-color: var(--primary-dark);
+  color: white;
+  padding: 24px;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* 🔹 Адаптив */
+@media screen and (max-width: 1024px) {
+  .features-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature-card {
+    max-width: 320px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .features h2,
+  .cta-final h2 {
+    font-size: 26px;
+  }
+
+  .hero-buttons a {
+    display: block;
+    margin: 10px auto;
+  }
+
+  .feature-card {
+    width: 90%;
+  }
+
+  .preview-image {
+    max-width: 90%;
+  }
+}
